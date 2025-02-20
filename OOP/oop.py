@@ -2,11 +2,12 @@ import random
 import string
 
 class Product:
-    def __init__(self, product_id: int, name: str, description: str, price: int):
+    def __init__(self, product_id: int, price: int, name: str = None, description: str = None):
         self.id = product_id
+        self.price = price
         self.name = name
         self.description = description
-        self.price = price
+
 
 
 def create_products(num_products: int = 1000):
