@@ -1,0 +1,34 @@
+@startuml
+!allowmixing
+
+skinparam classAttributeIconSize 0
+skinparam classArrowColor #888888
+skinparam classBorderColor #888888
+skinparam classFontColor #333333
+skinparam classBackgroundColor #FFFFFF
+
+title Book Object With Pointer-Based Data
+
+class "Book" {
+- title: pointer -> TitleData
+- author: pointer -> AuthorData
+}
+
+frame "Heap Memory" {
+rectangle "TitleData (string data)\nallocated separately" as T
+rectangle "AuthorData (string data)\nallocated separately" as A
+}
+
+' Show relationships: Book references data stored elsewhere
+Book --> T : title pointer
+Book --> A : author pointer
+
+note as N
+The Book object does NOT hold the actual string content.
+Instead, it stores pointers (references) to memory
+where that data truly resides (TitleData, AuthorData).
+end note
+
+Book -[#blue]-> N
+
+@enduml
